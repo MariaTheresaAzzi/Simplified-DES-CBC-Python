@@ -1,50 +1,131 @@
-Complete Project Guide: S-DES with CBC Mode
+# 🔐 S-DES with CBC Mode – Cryptography Project
 
-🔐 Project Objective
-Implement Simplified DES (S-DES) encryption and decryption from scratch in Python.
+This project implements the Simplified Data Encryption Standard (S-DES) with **Cipher Block Chaining (CBC)** mode in Python. It demonstrates key cryptographic concepts, including symmetric key encryption, block cipher chaining, and brute-force cryptanalysis.
 
-Use CBC (Cipher Block Chaining) mode as the block cipher mode of operation.
+---
 
-Encrypt and decrypt a plaintext file (text, image, or any file).
+## 📁 Project Structure
 
-Perform cryptanalysis (e.g., brute force) to decrypt ciphertext without the key.
+```plaintext
+.
+├── sdes.py            # Core S-DES algorithm: encryption, decryption, key generation
+├── cbc_mode.py        # Implements CBC mode using the S-DES cipher
+├── encrypt.py         # Encrypts a plaintext file using a user-provided key and IV
+├── decrypt.py         # Decrypts a ciphertext using the correct key
+├── brute_force.py     # Performs brute-force cryptanalysis to discover the key
+├── utils.py           # Helper functions for bitwise operations, padding, and conversions
+├── plaintext.txt      # Input plaintext file to encrypt
+├── ciphertext.bin     # Output encrypted binary file
+└── README.md          # Project documentation
+```
 
-Attempt to decrypt another group’s ciphertext by finding their key.
+---
 
-Prepare a detailed report, code, readme, and class presentation.
+## 🚀 Getting Started
 
-📚 Step 1: Research
-1. Understand S-DES
-S-DES is a simplified version of DES designed for educational purposes.
+### 🔧 Requirements
 
-Works on 8-bit plaintext blocks and uses a 10-bit key.
+* Python 3.6+
+* No external libraries are required (only standard Python modules)
 
-Main components:
+### 🛠️ Setup
 
-Key generation: Derive two 8-bit subkeys (K1 and K2) from the 10-bit key using permutation and shifts.
+1. Clone this repository:
 
-Initial Permutation (IP) and Inverse IP on the 8-bit plaintext.
+   ```bash
+   git clone https://github.com/your-username/S-DES-CBC-Project.git
+   cd S-DES-CBC-Project
+   ```
 
-Feistel function with expansion/permutation (EP), substitution boxes (S-boxes), and permutation (P4).
+2. Ensure `plaintext.txt` exists in the project directory with the message you want to encrypt.
 
-Two rounds of processing with subkeys.
+---
 
-Encryption: IP → round 1 with K1 → switch halves → round 2 with K2 → Inverse IP.
+## 🔒 How to Encrypt
 
-Decryption: Same as encryption but use keys in reverse order (K2 then K1).
+Run the `encrypt.py` script and input a **10-bit key** and **8-bit IV** when prompted:
 
-2. Understand CBC Mode
-CBC operates on blocks, XORing each plaintext block with the previous ciphertext block before encryption.
+```bash
+python encrypt.py
+```
 
-Requires an Initialization Vector (IV) for the first block.
+Example input:
 
-Improves security by making identical plaintext blocks encrypt differently.
+```
+Enter 10-bit key (e.g. 1010000010): 
+Enter 8-bit IV (e.g. 10101010): 
+```
 
-Padding is needed if plaintext size is not a multiple of block size (8 bits).
+Output: `ciphertext.bin`
 
-3. Cryptanalysis and Brute Force
-Since the keyspace for S-DES is small (2^10 = 1024 keys), brute forcing all keys is feasible.
+---
 
-Known-plaintext attack: If part of the plaintext is known, test all keys to find which produces matching ciphertext.
+## 🔓 How to Decrypt
 
-Ciphertext-only attack: More challenging but possible with statistical analysis or brute force.
+Run the `decrypt.py` script and input the same key and IV used for encryption:
+
+```bash
+python decrypt.py
+```
+
+Output: Decrypted plaintext printed to the console.
+
+---
+
+## 🧠 Brute-Force Cryptanalysis
+
+Use `brute_force.py` to simulate an attack by trying all possible 10-bit keys.
+
+```bash
+python brute_force.py
+```
+
+Input a known substring (e.g., `Hello`) from the original plaintext. The script will brute-force decrypt the ciphertext and return the correct key when it finds the known phrase.
+
+---
+
+## 🧪 CBC Mode Logic
+
+CBC mode chains plaintext blocks by XORing each with the previous ciphertext block before encryption:
+
+```
+C₁ = E(P₁ ⊕ IV)
+C₂ = E(P₂ ⊕ C₁)
+...
+```
+
+Where:
+
+* `P` = Plaintext block
+* `C` = Ciphertext block
+* `E()` = Encryption function
+* `IV` = Initialization Vector
+
+Implemented in `cbc_mode.py`.
+
+---
+
+## 📚 Educational Objectives
+
+This project was developed as a cryptography assignment to:
+
+1. Understand and implement S-DES from scratch.
+2. Explore CBC operation mode for block ciphers.
+3. Demonstrate cryptanalysis through brute-force attacks.
+4. Reflect on the security limitations of small key sizes.
+
+---
+
+## ⚠️ Disclaimer
+
+This project is **for educational purposes only**. S-DES is **not secure** and should **never** be used in real-world applications.
+
+---
+
+## ✍️ Author
+
+Maria Theresa Azzi
+
+---
+
+Let me know if you'd like to include diagrams or usage examples with screenshots.
