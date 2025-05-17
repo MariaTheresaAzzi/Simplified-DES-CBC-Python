@@ -116,16 +116,3 @@ This project was developed as a cryptography assignment to:
 
 ---
 
-## ⚠️ Disclaimer
-
-This project is **for educational purposes only**. S-DES is **not secure** and should **never** be used in real-world applications.
-
----
-
-## ✍️ Author
-
-Maria Theresa Azzi
-
----
-
-Let me know if you'd like to include diagrams or usage examples with screenshots.
