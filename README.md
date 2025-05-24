@@ -53,7 +53,7 @@ Example input:
 
 ```
 Enter 10-bit key (e.g. 1010000010): 
-Enter 8-bit IV (e.g. 10101010): 
+Enter 8-bit IV (e.g. 10101010): //IV = [0,1,0,1,1,0,1,0] already Initialized in the code no need to add it manually
 ```
 
 Output: `ciphertext.bin`
